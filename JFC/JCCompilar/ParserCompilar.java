@@ -133,7 +133,7 @@ public class ParserCompilar extends java_cup.runtime.lr_parser {
 	public ParserCompilar(LexerCompilar lex) {
 		super(lex);
         this.erroresCom = lex.getErroresCom();     
-        this.numExp = 0;
+        this.numExp = 1;
 	}
 
     /**
@@ -158,6 +158,11 @@ public class ParserCompilar extends java_cup.runtime.lr_parser {
 
     private void mostrarVal(String val1,String val2,String tipo){
         System.out.println("t"+this.numExp+" = " + val1 + tipo + val2);
+        this.numExp++;
+    }
+
+    private void mostrarVal2(String val1){
+        System.out.println("t"+this.numExp+" = "+"-"+val1);
         this.numExp++;
     }
 
@@ -373,7 +378,7 @@ System.out.println(val + "=" + String.valueOf(exp));
 		int valleft = ((java_cup.runtime.Symbol)CUP$ParserCompilar$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$ParserCompilar$stack.peek()).right;
 		String val = (String)((java_cup.runtime.Symbol) CUP$ParserCompilar$stack.peek()).value;
-		RESULT="-"+val;
+		mostrarVal2(String.valueOf(val));RESULT=valT();
               CUP$ParserCompilar$result = parser.getSymbolFactory().newSymbol("factor",3, ((java_cup.runtime.Symbol)CUP$ParserCompilar$stack.elementAt(CUP$ParserCompilar$top-1)), ((java_cup.runtime.Symbol)CUP$ParserCompilar$stack.peek()), RESULT);
             }
           return CUP$ParserCompilar$result;
